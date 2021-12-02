@@ -27,7 +27,7 @@ namespace pet_hotel.Controllers
         [HttpGet]
         public IEnumerable<Pet> GetPets()
         {
-            return _context.Pets.Include(pet => pet.ownedBy);
+            return _context.Pets.Include(pet => pet.petOwner);
         }
 
         // GET api/pets/:id
@@ -35,7 +35,7 @@ namespace pet_hotel.Controllers
         public Pet GetById(int id)
         {
             return _context.Pets
-            .Include(pet => pet.ownedBy)
+            .Include(pet => pet.petOwner)
             .SingleOrDefault(pet => pet.id == id);
         }
 

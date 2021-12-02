@@ -28,7 +28,7 @@ namespace pet_hotel.Models
             get
             {
                 Console.WriteLine("in petcount");
-                Console.WriteLine(this.petList);
+                Console.WriteLine("this is petList" + this.petList);
                 return (this.petList != null ? this.petList.Count : 0);
             }
         }
