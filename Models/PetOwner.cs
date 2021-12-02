@@ -22,7 +22,6 @@ namespace pet_hotel.Models
         public ICollection<Pet> petList { get; set; }
 
 
-
         [NotMapped]
         public int petCount
         {
