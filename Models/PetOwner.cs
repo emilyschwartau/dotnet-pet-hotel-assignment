@@ -20,11 +20,6 @@ namespace pet_hotel.Models
         // this is ignoring putting the petList into the DB table; not a DB column but a dynamic created field to get the pet count;
         [JsonIgnore]
         public ICollection<Pet> petList { get; set; }
-        // public List<Pet> petList = new List<Pet>()
-        // {
-
-        // };
-
 
 
         [NotMapped]
