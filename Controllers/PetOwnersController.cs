@@ -61,7 +61,42 @@ namespace pet_hotel.Controllers
         }
 
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Console.WriteLine("deleting with id: " + id);
+            PetOwner petOwner = _context.PetOwners.SingleOrDefault(petOwner => petOwner.id == id);
 
+            //if no petowner exist, return error
+            if (petOwner is null)
+            {
+                return NotFound();
+            }
+
+            //deleting and saving in db
+            _context.PetOwners.Remove(petOwner);
+            _context.SaveChanges();
+
+            return NoContent(); //204
+        }
+
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, PetOwner petOwner)
+        {
+            Console.WriteLine("in PUT");
+
+            if (id != petOwner.id)
+            {
+                return BadRequest();
+            }
+
+            //update in DB and save
+            _context.PetOwners.Update(petOwner);
+            _context.SaveChanges();
+
+            return NoContent(); //204
+        }
 
     }
 }
