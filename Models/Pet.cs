@@ -38,11 +38,11 @@ namespace pet_hotel.Models
 
         [Required]
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public PetBreedType breedType { get; set; }
+        public PetBreedType breed { get; set; }
 
         [Required]
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public PetColorType colorType { get; set; }
+        public PetColorType color { get; set; }
 
         [Required] // do we need Required? or simply use a ? after DateTime
         public DateTime checkedInAt { get; set; }

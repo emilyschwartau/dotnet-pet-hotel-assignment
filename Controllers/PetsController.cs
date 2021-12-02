@@ -37,15 +37,15 @@ namespace pet_hotel.Controllers
             Pet newPet1 = new Pet {
                 name = "Big Dog",
                 // petOwner = blaine,
-                colorType = PetColorType.Black,
-                breedType = PetBreedType.Poodle,
+                color = PetColorType.Black,
+                breed = PetBreedType.Poodle,
             };
 
             Pet newPet2 = new Pet {
                 name = "Little Dog",
                 // petOwner = blaine,
-                colorType = PetColorType.Golden,
-                breedType = PetBreedType.Labrador,
+                color = PetColorType.Golden,
+                breed = PetBreedType.Labrador,
             };
 
             return new List<Pet>{ newPet1, newPet2};
