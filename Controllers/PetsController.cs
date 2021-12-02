@@ -15,40 +15,106 @@ namespace pet_hotel.Controllers
     public class PetsController : ControllerBase
     {
         private readonly ApplicationContext _context;
-        public PetsController(ApplicationContext context) {
+        public PetsController(ApplicationContext context)
+        {
             _context = context;
         }
+
+        //** ENDPOINTS
 
         // This is just a stub for GET / to prevent any weird frontend errors that 
         // occur when the route is missing in this controller
         [HttpGet]
         public IEnumerable<Pet> GetPets()
         {
-            return new List<Pet>();
+            return _context.Pets.Include(pet => pet.ownedBy);
         }
 
-        [HttpGet]
-        [Route("test")]
-        public IEnumerable<Pet> GetPets() {
-            // PetOwner blaine = new PetOwner{
-            //     name = "Blaine"
-            // };
-
-            Pet newPet1 = new Pet {
-                name = "Big Dog",
-                // petOwner = blaine,
-                color = PetColorType.Black,
-                breed = PetBreedType.Poodle,
-            };
-
-            Pet newPet2 = new Pet {
-                name = "Little Dog",
-                // petOwner = blaine,
-                color = PetColorType.Golden,
-                breed = PetBreedType.Labrador,
-            };
-
-            return new List<Pet>{ newPet1, newPet2};
+        // GET api/pets/:id
+        [HttpGet("{id}")]
+        public Pet GetById(int id)
+        {
+            return _context.Pets
+            .Include(pet => pet.ownedBy)
+            .SingleOrDefault(pet => pet.id == id);
         }
+
+        // [HttpGet]
+        // [Route("test")]
+        // public IEnumerable<Pet> GetPets() {
+        //     // PetOwner blaine = new PetOwner{
+        //     //     name = "Blaine"
+        //     // };
+            // return new List<Pet>();
+        // }
+
+        //     Pet newPet1 = new Pet {
+        //         name = "Big Dog",
+        //         // petOwner = blaine,
+        //         color = PetColorType.Black,
+        //         breed = PetBreedType.Poodle,
+        //     };
+
+        //     Pet newPet2 = new Pet {
+        //         name = "Little Dog",
+        //         // petOwner = blaine,
+        //         color = PetColorType.Golden,
+        //         breed = PetBreedType.Labrador,
+        //     };
+        // return new List<Pet>{ newPet1, newPet2};
+
+        //PUT /api/pets/:id, body must be JSON with all required fields
+        //id = id of pet in DB
+        //pet = pet JSON object
+
+        [HttpPost]
+        public IActionResult Create(Pet pet)
+        {
+            if (pet == null)
+            {
+                return BadRequest();
+            }
+            _context.Add(pet);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(Create), new { id = pet.id }, pet);
+        }
+
+        //DEL /api/pets/:id
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Pet pet = _context.Pets.SingleOrDefault(pet => pet.id == id);
+            if (pet == null)
+            {
+                //not found
+                return NotFound(); //404
+            }
+
+            //delete the bread
+            _context.Pets.Remove(pet);
+            _context.SaveChanges();
+            //respond with no content
+            return NoContent(); //204
+        }
+
+                //PUT /api/pets/:id, body must be JSON with all required fields
+        //id = id of pet in DB
+        //pet = pet JSON object
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Pet pet)
+        {
+            if (id != pet.id)
+            {
+                return BadRequest();
+            }
+            //Update in DB
+            _context.Update(pet);
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+
     }
 }
+
