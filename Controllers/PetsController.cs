@@ -27,28 +27,28 @@ namespace pet_hotel.Controllers
             return new List<Pet>();
         }
 
-        [HttpGet]
-        [Route("test")]
-        public IEnumerable<Pet> GetPets() {
-            // PetOwner blaine = new PetOwner{
-            //     name = "Blaine"
-            // };
+        // [HttpGet]
+        // [Route("test")]
+        // public IEnumerable<Pet> GetPets() {
+        //     // PetOwner blaine = new PetOwner{
+        //     //     name = "Blaine"
+        //     // };
 
-            Pet newPet1 = new Pet {
-                name = "Big Dog",
-                // petOwner = blaine,
-                color = PetColorType.Black,
-                breed = PetBreedType.Poodle,
-            };
+        //     Pet newPet1 = new Pet {
+        //         name = "Big Dog",
+        //         // petOwner = blaine,
+        //         color = PetColorType.Black,
+        //         breed = PetBreedType.Poodle,
+        //     };
 
-            Pet newPet2 = new Pet {
-                name = "Little Dog",
-                // petOwner = blaine,
-                color = PetColorType.Golden,
-                breed = PetBreedType.Labrador,
-            };
+        //     Pet newPet2 = new Pet {
+        //         name = "Little Dog",
+        //         // petOwner = blaine,
+        //         color = PetColorType.Golden,
+        //         breed = PetBreedType.Labrador,
+        //     };
 
-            return new List<Pet>{ newPet1, newPet2};
-        }
+        //     return new List<Pet>{ newPet1, newPet2};
+        // }
     }
 }
