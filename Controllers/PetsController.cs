@@ -90,7 +90,6 @@ namespace pet_hotel.Controllers
             return NoContent();
         }
 
-
     }
 }
 
