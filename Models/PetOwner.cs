@@ -15,17 +15,25 @@ namespace pet_hotel.Models
 
         [Required]
         //validated format?
-        public string email { get; set; }
+        public string emailAddress { get; set; }
 
         // this is ignoring putting the petList into the DB table; not a DB column but a dynamic created field to get the pet count;
         [JsonIgnore]
-        public List<Pet> petList { get; set; }
+        public iCollection<Pet> petList { get; set; }
+        // public List<Pet> petList = new List<Pet>()
+        // {
+
+        // };
+
+
 
         [NotMapped]
         public int petCount
         {
             get
             {
+                Console.WriteLine("in petcount");
+                Console.WriteLine(this.petList);
                 return (this.petList != null ? this.petList.Count : 0);
             }
         }

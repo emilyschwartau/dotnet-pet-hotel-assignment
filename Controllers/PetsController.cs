@@ -45,6 +45,8 @@ namespace pet_hotel.Controllers
         //     // PetOwner blaine = new PetOwner{
         //     //     name = "Blaine"
         //     // };
+            // return new List<Pet>();
+        // }
 
         //     Pet newPet1 = new Pet {
         //         name = "Big Dog",
