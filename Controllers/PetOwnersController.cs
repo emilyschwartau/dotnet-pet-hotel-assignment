@@ -30,7 +30,7 @@ namespace pet_hotel.Controllers
         public IEnumerable<PetOwner> GetAll()
         {
             Console.WriteLine("in /api/petowners GET all");
-            return _context.PetOwners;
+            return _context.PetOwners.Include(petOwner => petOwner.petList);
         }
 
         [HttpGet("{id}")]
@@ -38,7 +38,9 @@ namespace pet_hotel.Controllers
         {
             Console.WriteLine("in /api/petowners/:id GET");
 
-            PetOwner petOwner = _context.PetOwners.SingleOrDefault(petOwner => petOwner.id == id);
+            PetOwner petOwner = _context.PetOwners
+                .Include(petOwner => petOwner.petList)
+                .SingleOrDefault(petOwner => petOwner.id == id);
 
             //catch
             if (petOwner == null)
