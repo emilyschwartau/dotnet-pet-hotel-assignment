@@ -9,7 +9,7 @@ namespace pet_hotel.Models
 {
     public enum PetBreedType
     {
-        Shepard,
+        Shepherd,
         Poodle,
         Beagle,
         Bulldog,
