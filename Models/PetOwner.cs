@@ -14,6 +14,8 @@ namespace pet_hotel.Models
         public string name { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         //validated format?
         public string emailAddress { get; set; }
 
