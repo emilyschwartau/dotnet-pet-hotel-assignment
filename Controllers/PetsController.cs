@@ -90,6 +90,40 @@ namespace pet_hotel.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/checkin")]
+        public IActionResult CheckIn(int id)
+        {
+          Pet pet = _context.Pets.SingleOrDefault(pet => pet.id == id);
+            if (pet == null)
+            {
+                //not found
+                return NotFound(); //404
+            }
+          
+
+          pet.checkIn();
+          _context.Update(pet);
+          _context.SaveChanges();
+          return NoContent();
+        }
+
+        [HttpPut("{id}/checkout")]
+        public IActionResult CheckOut(int id)
+        {
+          Pet pet = _context.Pets.SingleOrDefault(pet => pet.id == id);
+            if (pet == null)
+            {
+                //not found
+                return NotFound(); //404
+            }
+          
+
+          pet.checkOut();
+          _context.Update(pet);
+          _context.SaveChanges();
+          return NoContent();
+        }
+
     }
 }
 

@@ -9,7 +9,7 @@ namespace pet_hotel.Models
 {
     public enum PetBreedType
     {
-        Shepard,
+        Shepherd,
         Poodle,
         Beagle,
         Bulldog,
@@ -44,13 +44,23 @@ namespace pet_hotel.Models
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public PetColorType color { get; set; }
 
-        [Required] // do we need Required? or simply use a ? after DateTime
-        public DateTime checkedInAt { get; set; }
+        // [Required] // do we need Required? or simply use a ? after DateTime
+        public DateTime? checkedInAt { get; set; } = null;
 
         [ForeignKey("PetOwners")]
         public int petOwnerId { get; set; }
 
         public PetOwner petOwner { get; set; }
+
+        public void checkIn()
+        {
+          this.checkedInAt = DateTime.UtcNow;
+        }
+
+        public void checkOut()
+        {
+          this.checkedInAt = null;
+        }
 
     }   
 }
